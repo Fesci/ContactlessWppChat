@@ -2,10 +2,12 @@ package com.example.contactlesswppchat
 
 import android.provider.ContactsContract.CommonDataKinds.Phone
 
-data class CountryInfo(
+data class CountryDataClass(
     val name:String,
     val flag:String,
     val code:String,
-    val dialCode:Phone
+    val dialCode:String
 
 )
+
+
