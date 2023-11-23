@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ContactlessWppChat</string>
+    <string name="country_code_text">Country code</string>
+    <string name="main_button_text">Open Whatsapp</string>
+    <string name="area_code_text">Area code</string>
+    <string name="phone_number_text">Phone number</string>
+
+</resources>
