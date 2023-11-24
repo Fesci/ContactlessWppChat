@@ -4,14 +4,14 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.ComponentActivity
-import com.example.contactlesswppchat.assets.readJsonFile
-import org.json.JSONArray
-import com.example.contactlesswppchat.CountryDataClass
+import com.example.contactlesswppchat.utils.convertJsonToList
+
 
 
 class MainActivity : ComponentActivity() {
@@ -29,40 +29,27 @@ class MainActivity : ComponentActivity() {
         editPhoneText = findViewById(R.id.editPhoneText)
         countrySpinner = findViewById(R.id.countryCodeSpinner)
 
-        val countryData = loadCountryData()
-
-        val countryNames = countryData.map { it.name }
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, countryNames)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val countryDataList = convertJsonToList(this,"country_dial_info.json")
+        val adapter = ArrayAdapter<CountryDataClass>(this,android.R.layout.simple_spinner_dropdown_item,countryDataList)
         countrySpinner.adapter = adapter
+        countrySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedCountry = countryDataList[position]
+                editCountryText.setText(selectedCountry.dialCode)
+            }
 
-        // Set a listener to handle item selection
-        //TODO
-        //countrySpinner.setOnItemSelectedListener { parent, view, position, id ->
-          //  val selectedCountry = countryData[position]
-            //editCountryText.text = selectedCountry.dialCode
-        //}
-    }
-    private fun loadCountryData(): List<CountryDataClass> {
-        val jsonFileName = "country_dial_info.json"  // Replace with your actual file name
-        val jsonString = readJsonFile(this,jsonFileName)
-        val jsonArray = JSONArray(jsonString)
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
 
-        val countries = mutableListOf<CountryDataClass>()
-
-        for (i in 0 until jsonArray.length()) {
-            val jsonCountry = jsonArray.getJSONObject(i)
-            val name = jsonCountry.getString("name")
-            val flag = jsonCountry.getString("flag")
-
-            val code = jsonCountry.getString("code")
-            val dialCode = jsonCountry.getString("dial_code")
-
-            countries.add(CountryDataClass(name, flag, code, dialCode))
         }
-
-        return countries
     }
+
     fun openWhatsapp(view:View){
         val countryCode = editCountryText.text.toString()
         val areaCode = editAreaText.text.toString()
