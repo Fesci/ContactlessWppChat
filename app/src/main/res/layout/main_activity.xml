@@ -9,8 +9,9 @@
 
     <EditText
         android:id="@+id/editCountryText"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="68dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/country_code_text"
@@ -18,21 +19,21 @@
         android:labelFor="@+id/editCountryText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.83"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/countryCodeSpinner"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.294"
+        app:layout_constraintVertical_bias="0.297"
         tools:ignore="LabelFor" />
 
     <Spinner
         android:id="@+id/countryCodeSpinner"
-        android:layout_width="100dp"
-        android:layout_height="48dp"
+        android:layout_width="150dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="88dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editCountryText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.294" />
+        app:layout_constraintVertical_bias="0.282" />
 
     <EditText
         android:id="@+id/editAreaText"
