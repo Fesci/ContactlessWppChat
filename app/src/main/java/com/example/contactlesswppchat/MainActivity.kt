@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import com.example.contactlesswppchat.utils.CountryAdapter
 import com.example.contactlesswppchat.utils.convertJsonToList
 
 
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
         countrySpinner = findViewById(R.id.countryCodeSpinner)
 
         val countryDataList = convertJsonToList(this,"country_dial_info.json")
-        val adapter = ArrayAdapter<CountryDataClass>(this,android.R.layout.simple_spinner_dropdown_item,countryDataList)
+        val adapter = CountryAdapter(this,countryDataList)
         countrySpinner.adapter = adapter
         countrySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
