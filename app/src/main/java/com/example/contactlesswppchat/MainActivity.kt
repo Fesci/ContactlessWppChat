@@ -65,7 +65,7 @@ class MainActivity : ComponentActivity() {
             startActivity(intent)
         } else {
             // Muestra un mensaje de error si algún campo está vacío
-            showToast("Por favor, completa todos los campos.")
+            showToast("completa todos los campos.")
         }
     }
 
